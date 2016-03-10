@@ -5,6 +5,5 @@ describe docker_image('registry:2') do
 end
 
 describe docker_container('registry') do
-  it { should be_present }
   it { should be_running }
 end

@@ -23,4 +23,4 @@
     ports:  "{{ docker_registry_host_port }}:5000"
     path:   "{{ docker_registry_build_dir }}"
     restart_policy: always
-    state:  present
+    state:  started

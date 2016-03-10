@@ -9,6 +9,5 @@
     image:  "registry:2"
     ports:  "{{ docker_registry_host_port }}:5000"
     volumes: "{{ docker_registry_local_data_dir }}:/var/lib/registry"
-    path:   "{{ docker_registry_build_dir }}"
     restart_policy: always
-    state:  present
+    state:  started
