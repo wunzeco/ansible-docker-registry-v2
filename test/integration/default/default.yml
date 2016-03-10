@@ -1,8 +1,27 @@
 ---
-- hosts: test-kitchen
+
+- name: local_fs storage backend
+  hosts: test-kitchen
 
   vars:
     docker_registry_storage_backend: local_fs
+    
+  roles:
+    - wunzeco.docker
+    - ansible-docker-registry-v2
+
+
+- name: S3 storage backend
+  hosts: test-kitchen
+
+  vars:
+    docker_registry_storage_backend: s3
+    docker_registry_s3_bucket: docker-registry-data
+    docker_registry_aws_region: eu-west-1
+    docker_registry_aws_access_key: ''
+    docker_registry_aws_secret_key: ''
+    docker_registry_host_port: 6000
+    docker_registry_container_name: registry-s3
     
   roles:
     - wunzeco.docker
