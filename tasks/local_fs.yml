@@ -10,4 +10,5 @@
     ports:  "{{ docker_registry_host_port }}:5000"
     volumes: "{{ docker_registry_local_data_dir }}:/var/lib/registry"
     restart_policy: always
+    restart_policy_retry: 5
     state:  started

@@ -22,4 +22,5 @@
     image:  "registry:2-{{ docker_registry_storage_backend }}"
     ports:  "{{ docker_registry_host_port }}:5000"
     restart_policy: always
+    restart_policy_retry: 5
     state:  started
