@@ -7,7 +7,7 @@
   template: src={{ docker_registry_storage_backend }}_config.yml.j2 dest={{ docker_registry_build_dir }}/config.yml
 
 - name: Create Dockerfile for new docker registry image
-  copy: src=Dockerfile.j2 dest={{ docker_registry_build_dir }}/Dockerfile
+  copy: src=Dockerfile dest={{ docker_registry_build_dir }}/Dockerfile
 
 - name: Build docker registry image with config file added
   docker_image:
