@@ -5,18 +5,35 @@
 
 - name: Create docker registry config file
   template: src={{ docker_registry_storage_backend }}_config.yml.j2 dest={{ docker_registry_build_dir }}/config.yml
+  register: config
 
 - name: Create Dockerfile for new docker registry image
   copy: src=Dockerfile dest={{ docker_registry_build_dir }}/Dockerfile
+  register: dockerfile
 
-- name: Build docker registry image with config file added
+- name: Remove custom docker registry image
+  docker_image:
+    name:   registry
+    tag:    "2-{{ docker_registry_storage_backend }}"
+    path:   "{{ docker_registry_build_dir }}"
+    state:  absent
+  when: config|changed or dockerfile|changed
+
+- name: Build custom docker registry image with config file added
   docker_image:
     name:   registry
     tag:    "2-{{ docker_registry_storage_backend }}"
     path:   "{{ docker_registry_build_dir }}"
     state:  present
 
-- name: Start docker registry
+- name: Remove custom docker registry container
+  docker:
+    name:   "{{ docker_registry_container_name }}"
+    image:  "registry:2-{{ docker_registry_storage_backend }}"
+    state:  absent
+  when: config|changed or dockerfile|changed
+
+- name: Start custom docker registry
   docker:
     name:   "{{ docker_registry_container_name }}"
     image:  "registry:2-{{ docker_registry_storage_backend }}"
