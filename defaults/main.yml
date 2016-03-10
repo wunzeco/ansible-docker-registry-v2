@@ -1,0 +1,20 @@
+---
+docker_registry_host_port: 5000
+
+#-----------------
+# local filesystem
+
+docker_registry_local_data_dir: /usr/local/docker-registry
+
+#-------------------
+# S3 storage backend
+
+docker_registry_build_dir: /var/tmp/docker-registry
+docker_registry_storage_backend: s3
+
+docker_registry_s3_bucket:        # Mandatory
+docker_registry_s3_root_dir: '/'
+
+docker_registry_aws_region:
+docker_registry_aws_access_key:
+docker_registry_aws_secret_key:

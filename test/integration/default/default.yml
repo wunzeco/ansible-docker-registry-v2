@@ -1,0 +1,9 @@
+---
+- hosts: test-kitchen
+
+  vars:
+    docker_registry_storage_backend: local_fs
+    
+  roles:
+    - wunzeco.docker
+    - ansible-docker-registry-v2

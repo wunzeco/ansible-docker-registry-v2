@@ -1,0 +1,19 @@
+version: 0.1
+log:
+    fields:
+        service: registry
+http:
+    addr: :5000
+storage:
+    cache:
+        layerinfo: inmemory
+    s3:
+        accesskey: {{ docker_registry_aws_access_key }}
+        secretkey: {{ docker_registry_aws_access_key }}
+        region: {{ docker_registry_aws_region }}
+        bucket: {{ docker_registry_s3_bucket|mandatory }}
+        encrypt: true
+        secure: true
+        v4auth: true
+        chunksize: 5242880
+        rootdirectory: {{ docker_registry_s3_root_dir }}
