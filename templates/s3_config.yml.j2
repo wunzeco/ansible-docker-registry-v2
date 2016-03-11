@@ -9,7 +9,7 @@ storage:
         layerinfo: inmemory
     s3:
         accesskey: {{ docker_registry_aws_access_key }}
-        secretkey: {{ docker_registry_aws_access_key }}
+        secretkey: {{ docker_registry_aws_secret_key }}
         region: {{ docker_registry_aws_region }}
         bucket: {{ docker_registry_s3_bucket|mandatory }}
         encrypt: true
