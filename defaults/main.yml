@@ -1,6 +1,7 @@
 ---
 docker_registry_host_port: 5000
 docker_registry_container_name: registry
+docker_registry_storage_backend: local_fs
 
 #-----------------
 # local filesystem
@@ -11,7 +12,6 @@ docker_registry_local_data_dir: /usr/local/docker-registry
 # S3 storage backend
 
 docker_registry_build_dir: /var/tmp/docker-registry
-docker_registry_storage_backend: s3
 
 docker_registry_s3_bucket:        # Mandatory
 docker_registry_s3_root_dir: '/'
