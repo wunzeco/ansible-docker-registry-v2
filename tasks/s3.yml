@@ -11,13 +11,13 @@
   copy: src=Dockerfile dest={{ docker_registry_build_dir }}/Dockerfile
   register: dockerfile
 
-# With state=build, docker_image is rebuilt each time task runs
 - name: Build custom docker registry image with config file added
   docker_image:
     name:   registry
     tag:    "2-{{ docker_registry_storage_backend }}"
     path:   "{{ docker_registry_build_dir }}"
-    state:  build
+    force:  yes
+    state:  present
 
 - name: Remove custom docker registry container
   docker:
