@@ -13,3 +13,16 @@ Ansible role to build/run docker registry.
     - wunzeco.docker-registry-v2
 ```
 
+
+## Testing
+
+To run this role's integration tests
+
+```
+kitchen test
+```
+
+
+## Dependencies
+
+none
