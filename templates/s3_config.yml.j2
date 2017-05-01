@@ -8,8 +8,10 @@ storage:
     cache:
         layerinfo: inmemory
     s3:
+{% if docker_registry_aws_access_key and docker_registry_aws_secret_key %}
         accesskey: {{ docker_registry_aws_access_key }}
         secretkey: {{ docker_registry_aws_secret_key }}
+{% endif %}
         region: {{ docker_registry_aws_region }}
         bucket: {{ docker_registry_s3_bucket|mandatory }}
         encrypt: true
