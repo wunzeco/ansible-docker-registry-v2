@@ -4,11 +4,11 @@
   file: path={{ docker_registry_local_data_dir }} state=directory
 
 - name: Start docker registry
-  docker:
+  docker_container:
     name:   "{{ docker_registry_container_name }}"
     image:  "registry:2"
-    ports:  "{{ docker_registry_host_port }}:5000"
     volumes: "{{ docker_registry_local_data_dir }}:/var/lib/registry"
-    restart_policy_retry: 5
-    #restart_policy: always
+    published_ports:  "{{ docker_registry_host_port }}:5000"
+    restart_policy:   "on-failure"
+    restart_retries:  5
     state:  started

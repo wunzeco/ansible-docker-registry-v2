@@ -20,17 +20,17 @@
     state:  present
 
 - name: Remove custom docker registry container
-  docker:
+  docker_container:
     name:   "{{ docker_registry_container_name }}"
     image:  "registry:2-{{ docker_registry_storage_backend }}"
     state:  absent
   when: config|changed or dockerfile|changed
 
 - name: Start custom docker registry
-  docker:
+  docker_container:
     name:   "{{ docker_registry_container_name }}"
     image:  "registry:2-{{ docker_registry_storage_backend }}"
-    ports:  "{{ docker_registry_host_port }}:5000"
-    restart_policy_retry: 5
-    #restart_policy: always
+    published_ports:  "{{ docker_registry_host_port }}:5000"
+    restart_policy:   "on-failure"
+    restart_retries:  5
     state:  started
