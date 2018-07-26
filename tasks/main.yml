@@ -4,5 +4,5 @@
   fail: msg="Docker Registry storage backend specified ({{ docker_registry_storage_backend }}) not supported by this role yet."
   when: not docker_registry_storage_backend | match("local_fs|s3")
 
-- include: "{{ docker_registry_storage_backend }}.yml"
+- include_tasks: "{{ docker_registry_storage_backend }}.yml"
 
